@@ -1,3 +1,6 @@
+using Bloggie.Web.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace Bloggie.Web
 {
     //program.cs dostasý uygulamanýn konfigürasyon ayarlarýnýn yaðýldýðý uygulamanýn baþladýðý dosyadýr. Builder adýnda bir middleware'imiz bulunmaktadýr. Bu middleware ile programda kullanacaðýz tüm servisleri tanýmlamaktayýz. Ýleride kullanacaðýmýz tüm ek servisleri bu alanda tanýmlayacaðýz.
@@ -9,7 +12,7 @@ namespace Bloggie.Web
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddDbContext<BloggieDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("BloggieDbConnectionString")));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
