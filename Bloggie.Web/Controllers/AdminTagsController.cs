@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Bloggie.Web.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Bloggie.Web.Controllers
 {
@@ -12,17 +13,16 @@ namespace Bloggie.Web.Controllers
             return View();
         }
 
-        //Http Post metodu çalıştırıyoruz. Burada amacımız Add View'ında oluşturmuş olduğumuz form içerisinde gerçekleşen POST metodu butona tıklandığında submit olsun. Ve bu submit sonrasında aşağıdaki action'ımız devreye girsin.
-        //Peki kullanıcının bu bahsi geçen view üzerinde inputlara girmiş olduğu verileri sayfamıza nasıl çekeceğiz??.
-        //1. Yöntem - Bunun için önce view'a gideceğiz ve inputlara birer Name vereceğiz. Sonra da controllerın içeriinde birer değişkende formdan gelen inputları aşağıdaki gibi tutacağız.
-        //Fakat get metodu kullandığımız Add action'ı ile post metodunda kullandığımız Add action'ının adları aynı olamamaktadır. Çünkü bir metot aynı sayıda parametreyi alarak yeniden aynı isimde kullanılamamaktadır. Dolayısıyla biz de metodumuzun adının farklı olmasını fakatdavranış biçiminin aynı olmasını sağlamak adına ActionName adında bir özellik kullanarak bu metodun da Add action'ı içinde davranış sergilemesini sağladık.
+        /*
+         View üzerinden kullanıcının gireceği veri kadar olan kısım için bir view model oluşturduk ve orjinal domain modeldeki kullandığımız ihtiyacımız olan propertyleri içerisinde ekledik. Viewda artık bu viewmodel'a erişmek için en üst kısma bir model tanımlası yapıp viewmodelımızın bulunduğu namespace'i tanımladık. Sonra da inputlardaki değişiklikleri bu viewmodel'a aktarmak için her input'a birer "asp-for" prop'u geçitik. Bunun da amacı şuydu; sayfanın en üstünde tanımlamış olduğumuz model içindeki propertyler'den hangilerini doldurmamız gerektiğini tanımladığımız alandı. Yani kullanıcı name bölümünde bişeyler yazdığında viewmodel içinde bulunan name kısmı dolduruluyor olacaktır. Akabinde doldurulması gerekn her yer doldurulduktan sonra submit işlemi gerçekleştiğinde bu verileri viewmodel üzerinde controller'a gönderiyor olacağız.
+         */
+
         [HttpPost]
         [ActionName("Add")]
-        public IActionResult SubmitTag()
+        public IActionResult Add(AddTagRequest addTagRequest)
         {
-            var name = Request.Form["name"];
-            var displayName = Request.Form["displayName"];
-
+            var name = addTagRequest.Name;
+            var displayName = addTagRequest.DisplayName;
             //Submit işlemi gerçekleştikten sonra bizi Add.cshtml'de tutmasını istiyoruz.
             return View("Add");
         }

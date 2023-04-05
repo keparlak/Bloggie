@@ -1,20 +1,18 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Bloggie.Web.Models.ViewModels.AddTagRequest
 @{
 }
-<div class="bg-secondary py-2">
+<div class="py-2">
     <div class="container">
         <h1>
             Add New Tag - Admin Functionallity
         </h1><form class="row g-3" method="post">
             <div class="col-auto">
                 <label for="inputTag" class="visually-hidden">Name</label>
-                <input type="text" class="form-control" id="inputTag" placeholder="Name">
+                <input type="text" class="form-control" id="inputTag" asp-for="Name" placeholder="Name">
             </div>
             <div class="col-auto">
                 <label for="inputDisplayTag" class="visually-hidden">Display Name</label>
-                <input type="text" class="form-control" id="inputDisplayTag" placeholder="Display Name">
+                <input type="text" class="form-control" id="inputDisplayTag" asp-for="DisplayName" placeholder="Display Name">
             </div>
             <div class="col-auto">
                 <button type="submit" class="btn btn-primary mb-3">Submit</button>
