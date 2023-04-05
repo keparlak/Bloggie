@@ -1,10 +1,20 @@
-﻿using Bloggie.Web.Models.ViewModels;
+﻿using Bloggie.Web.Data;
+using Bloggie.Web.Models.Domain;
+using Bloggie.Web.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bloggie.Web.Controllers
 {
     public class AdminTagsController : Controller
     {
+        private readonly BloggieDbContext bloggieDbContext;
+
+        //DbContext için dependency injetion işlemi gerçekleştirildi.
+        public AdminTagsController(BloggieDbContext bloggieDbContext)
+        {
+            this.bloggieDbContext = bloggieDbContext;
+        }
+
         //Yapmış olduğumuz MVC routing şekli şunun gibi olacaktır.
         //htt://localhost:1544/AdminTags/Add
         [HttpGet]
@@ -18,11 +28,15 @@ namespace Bloggie.Web.Controllers
          */
 
         [HttpPost]
-        [ActionName("Add")]
         public IActionResult Add(AddTagRequest addTagRequest)
         {
-            var name = addTagRequest.Name;
-            var displayName = addTagRequest.DisplayName;
+            var tag = new Tag
+            {
+                Name = addTagRequest.Name,
+                DisplayName = addTagRequest.DisplayName,
+            };
+            bloggieDbContext.Tags.Add(tag);
+            bloggieDbContext.SaveChanges();
             //Submit işlemi gerçekleştikten sonra bizi Add.cshtml'de tutmasını istiyoruz.
             return View("Add");
         }
