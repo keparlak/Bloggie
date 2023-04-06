@@ -1,0 +1,28 @@
+﻿@model List<Bloggie.Web.Models.Domain.Tag>
+@{
+}
+@if (Model != null && Model.Any())
+{
+    <div class="table-responsive">
+        <table class="table table-hover table-dark table-striped shadow-lg rounded">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">DisplayName</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@item.Id</th>
+                        <td>@item.Name</td>
+                        <td>@item.DisplayName</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+}
