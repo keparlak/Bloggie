@@ -20,7 +20,10 @@
         <input type="text" class="form-control" id="inputDisplayTag" asp-for="DisplayName" placeholder="Display Name">
     </div>
     <div class="col-auto">
-        <button type="submit" class="btn btn-primary mb-3">Update</button>
+        <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+        <button type="submit" class="btn btn-dark">Update</button>
+        <button type="submit" class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.Id" asp-controller="AdminTags">Delete</button>
+        </div>
     </div>
 </form>
 
