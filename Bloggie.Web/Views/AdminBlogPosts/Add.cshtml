@@ -5,48 +5,54 @@
 <div class="my-5 card">
 	<div class="card-body">
 		<h5 class="card-title">Add Blog Post</h5>
-        <form method="post">
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="heading" asp-for="Heading" placeholder="name@example.com">
-                <label for="heading">Heading</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="pageTitle" asp-for="PageTitle" placeholder="name@example.com">
-                <label for="pageTitle">Page Title</label>
-            </div>
-            <div class="form-floating mb-3">
-                <textarea class="form-control h-25" placeholder="Add blogpost content to here.." id="content" asp-for="Content"></textarea>
-                <label for="content">Post</label>
-            </div>
+		<form method="post">
+			<div class="form-floating mb-3">
+				<input type="text" class="form-control" id="heading" asp-for="Heading" placeholder="name@example.com">
+				<label for="heading">Heading</label>
+			</div>
+			<div class="form-floating mb-3">
+				<input type="text" class="form-control" id="pageTitle" asp-for="PageTitle" placeholder="name@example.com">
+				<label for="pageTitle">Page Title</label>
+			</div>
+			<div class="form-floating mb-3">
+				<textarea class="form-control h-25" placeholder="Add blogpost content to here.." id="content" asp-for="Content"></textarea>
+				<label for="content">Post</label>
+			</div>
 
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="shortDescription" asp-for="ShortDescription" placeholder="name@example.com">
-                <label for="shortDescription">Short Description</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="featuredImageUrl" asp-for="FeaturedImageUrl" placeholder="name@example.com">
-                <label for="featuredImageUrl">Featured Image URL</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="urlHandle" asp-for="UrlHandle" placeholder="name@example.com">
-                <label for="urlHandle">URL Handle</label>
-            </div>
-            <div class="mb-3">
-                <input type="date" class="form-control" id="publishedDate" asp-for="PublishedDate"/>
-            </div>
+			<div class="form-floating mb-3">
+				<input type="text" class="form-control" id="shortDescription" asp-for="ShortDescription" placeholder="name@example.com">
+				<label for="shortDescription">Short Description</label>
+			</div>
+			<div class="form-floating mb-3">
+				<input type="text" class="form-control" id="featuredImageUrl" asp-for="FeaturedImageUrl" placeholder="name@example.com">
+				<label for="featuredImageUrl">Featured Image URL</label>
+			</div>
+			<div class="form-floating mb-3">
+				<input type="text" class="form-control" id="urlHandle" asp-for="UrlHandle" placeholder="name@example.com">
+				<label for="urlHandle">URL Handle</label>
+			</div>
+			
 
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="author" asp-for="Author" placeholder="name@example.com">
-                <label for="author">Author</label>
-            </div>
-            <div class="mb-3">
-                <input type="checkbox" class="form-check-input" id="visible" asp-for="Visible" />
-                <label class="form-check-label" for="visible">Is Visible?</label>
-            </div>
+			<div class="form-floating mb-3">
+				<input type="text" class="form-control" id="author" asp-for="Author" placeholder="name@example.com">
+				<label for="author">Author</label>
+			</div>
+			<div class="row">
+				<div class="col mb-3">
+					<select class="form-select" asp-items="@Model.Tags" asp-for="SelectedTags"></select>
+				</div>
+				<div class="col mb-3">
+					<input type="date" class="form-control" id="publishedDate" asp-for="PublishedDate" />
+				</div>
+				<div class="col mb-3">
+					<input type="checkbox" class="form-check-input" id="visible" asp-for="Visible" />
+					<label class="form-check-label" for="visible">Is Visible?</label>
+				</div>
+			</div><div class="mb-3">
+				<button type="submit" class="btn btn-dark">Save</button>
+			</div>
 
-            <div class="mb-3">
-                <button type="submit" class="btn btn-dark">Save</button>
-            </div>
-        </form>
+			
+		</form>
 	</div>
 </div>
