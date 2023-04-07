@@ -1,4 +1,5 @@
 using Bloggie.Web.Data;
+using Bloggie.Web.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bloggie.Web
@@ -13,6 +14,9 @@ namespace Bloggie.Web
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<BloggieDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("BloggieDbConnectionString")));
+
+            builder.Services.AddScoped<ITagInterface, TagReposityory>(); 
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
